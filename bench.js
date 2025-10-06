@@ -6,7 +6,7 @@ run(new FastFIFO(), 'fast-fifo')
 run(new FIFO(), 'fifo')
 run(new FastFIFO(), 'fast-fifo')
 
-function run (q, prefix) {
+function run(q, prefix) {
   const runs = 1024
 
   console.time(prefix + ' bulk push and shift')

@@ -11,7 +11,7 @@ allocating a wrapper object for each item.
 
 ## Usage
 
-``` js
+```js
 const FIFO = require('fast-fifo')
 
 const q = new FIFO()

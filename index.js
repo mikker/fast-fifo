@@ -1,20 +1,20 @@
 const FixedFIFO = require('./fixed-size')
 
 module.exports = class FastFIFO {
-  constructor (hwm) {
+  constructor(hwm) {
     this.hwm = hwm || 16
     this.head = new FixedFIFO(this.hwm)
     this.tail = this.head
     this.length = 0
   }
 
-  clear () {
+  clear() {
     this.head = this.tail
     this.head.clear()
     this.length = 0
   }
 
-  push (val) {
+  push(val) {
     this.length++
     if (!this.head.push(val)) {
       const prev = this.head
@@ -23,7 +23,7 @@ module.exports = class FastFIFO {
     }
   }
 
-  shift () {
+  shift() {
     if (this.length !== 0) this.length--
     const val = this.tail.shift()
     if (val === undefined && this.tail.next) {
@@ -36,13 +36,13 @@ module.exports = class FastFIFO {
     return val
   }
 
-  peek () {
+  peek() {
     const val = this.tail.peek()
     if (val === undefined && this.tail.next) return this.tail.next.peek()
     return val
   }
 
-  isEmpty () {
+  isEmpty() {
     return this.length === 0
   }
 }
